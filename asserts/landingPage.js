@@ -15,7 +15,7 @@ const createLandingPage = () => {
   });
 
   button.onclick = () => {
-    location.href = '/quiz.html'
+    location.href = './quiz.html'
   };
 
   const page = element({

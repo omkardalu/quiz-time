@@ -37,7 +37,7 @@ const quizPage = () => {
     event.target.innerText = currentQuestionIndex < questions.length - 2 ? 'Next >' : 'Finish ✅';
     if (event.target.innerText === 'Finish ✅') {
       stopTimer();
-      location.href = '/result.html';
+      location.href = './result.html';
     }
     currentQuestionIndex++;
     resetTimer();
