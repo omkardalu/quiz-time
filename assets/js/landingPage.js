@@ -4,7 +4,7 @@ const createLandingPage = () => {
   const image = element({
     element: 'img',
     className: 'quiz-logo-land-pg',
-    src: './asserts/images/logo.svg',
+    src: './assets/images/logo.svg',
   });
 
   const button = element({
