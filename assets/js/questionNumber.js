@@ -12,8 +12,14 @@ const questionNumberElement = () => {
     className: 'question-number-container',
     children: questionNumber,
   });
-  const setQuestionNumber = (currentQuestion, totalQuestions) => {
-    questionNumber.innerText = `${currentQuestion}/${totalQuestions}`;
+
+  const setQuestionNumber = (currentQuestionIndex, totalQuestions) => {
+    questionNumber.innerText = `${currentQuestionIndex + 1}/${totalQuestions}`;
+    try{
+      localStorage.setItem('currentQuestion',JSON.stringify(currentQuestionIndex));
+    }catch(e){
+      console.log(e);
+    }
   };
   return [questionNumberContainer, setQuestionNumber];
 };

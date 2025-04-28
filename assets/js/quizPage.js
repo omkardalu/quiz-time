@@ -11,22 +11,36 @@ const quizPage = () => {
   const { questionElement, scoreElement, next } = components;
   const [question, setQuestion] = questionElement();
   const [questionNumber, setQuestionNumber] = questionNumberElement();
-  const [options, setOptions, showAnswer] = optionsElement();
+  const [options, handleOptions, showAnswer] = optionsElement();
   const [timer, setTimer, resetTimer, stopTimer] = timerElement();
   const [score, updateScore] = scoreElement();
 
-  let currentQuestionIndex = 0;
-  localStorage.setItem('score', JSON.stringify(0));
+  const getCurrentIndex = () => {
+    try {
+      const isAnswered = JSON.parse(localStorage.getItem('isAnswered'));
+      const currentQuestion = JSON.parse(localStorage.getItem('currentQuestion')) || 0;
+      if (isAnswered) {
+        localStorage.setItem('isAnswered', false);
+        currentQuestion  === questions.length - 1 ? location.href = './result.html' : null;
+        return currentQuestion + 1;
+      }
+      return currentQuestion;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  let currentQuestionIndex = getCurrentIndex();
+
   const setData = async () => {
     const {
       question,
       options,
       answer,
     } = questions[currentQuestionIndex];
-
-    setQuestionNumber(currentQuestionIndex + 1, questions.length);
+    setQuestionNumber(currentQuestionIndex, questions.length);
     setQuestion(question);
-    setOptions(options, answer, stopTimer, updateScore);
+    handleOptions(options, answer, stopTimer, updateScore);
     await setTimer();
     showAnswer(answer);
   };
@@ -34,15 +48,16 @@ const quizPage = () => {
   setData();
 
   const goToNext = async (event) => {
-    event.target.innerText = currentQuestionIndex < questions.length - 2 ? 'Next >' : 'Finish ✅';
     if (event.target.innerText === 'Finish ✅') {
       stopTimer();
       location.href = './result.html';
     }
-    currentQuestionIndex++;
+    event.target.innerText = currentQuestionIndex < questions.length - 2 ? 'Next >' : 'Finish ✅';
     resetTimer();
+    currentQuestionIndex++;
     await setData();
   };
+
   next.addEventListener('click', goToNext);
 
   const page = element({

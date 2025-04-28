@@ -8,7 +8,7 @@ const element = ({ element, className, id, src, href, target, children }) => {
     htmlElement.target = target || '';
   }
 
-  if (element === 'img') {
+  if (element === 'img' || element === 'audio') {
     htmlElement.src = src || '';
   }
   

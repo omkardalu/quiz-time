@@ -20,18 +20,18 @@ const scoreElement = () => {
     element: 'div',
     id: 'score-board',
     className: 'score-board',
-    children:`score: 0/${questions.length}`,
+    children: `score: ${JSON.parse(localStorage.getItem('score')) || 0}/${questions.length}`,
   });
-  
+
   const updateScore = () => {
     let data;
-    try{
+    try {
       data = JSON.parse(localStorage.getItem('score'));
-      localStorage.setItem('score',JSON.stringify(data + 1));
-    }catch(e){
+      localStorage.setItem('score', JSON.stringify(data + 1));
+    } catch (e) {
       console.log(e);
     }
-    score.innerText = `score: ${data +1 }/${questions.length}`;
+    score.innerText = `score: ${data + 1}/${questions.length}`;
     return score;
   };
   return [score, updateScore];

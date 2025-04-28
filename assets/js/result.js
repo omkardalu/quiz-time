@@ -6,7 +6,7 @@ const createResultPage = () => {
   const image = element({
     element: 'img',
     className: 'quiz-logo-land-pg',
-    src: './asserts/images/logo.svg',
+    src: './assets/images/logo.svg',
   });
 
   const score = JSON.parse(localStorage.getItem('score')) || 0;
@@ -29,7 +29,7 @@ const createResultPage = () => {
   const resultBar = element({
     element: 'div',
     className: 'result-bar',
-    children: [securedBar,result],
+    children: [securedBar, result],
   });
 
 
@@ -52,8 +52,8 @@ const createResultPage = () => {
   });
 
   quiz(page);
-  const scoreElement = document.getElementById('score-board');
-
 };
+
 createResultPage();
 localStorage.setItem('score', JSON.stringify(0));
+localStorage.setItem('currentQuestion', JSON.stringify(0));

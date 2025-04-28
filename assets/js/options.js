@@ -45,7 +45,7 @@ const optionsElement = () => {
     }
   };
 
-  const setOptions = (optionsArray, answer, stopTimer, updateScore) => {
+  const handleOptions = (optionsArray, answer, stopTimer, updateScore) => {
     const optionElements = [option1, option2, option3, option4];
 
     optionElements.forEach((option, index) => {
@@ -54,13 +54,14 @@ const optionsElement = () => {
 
       const handleClick = (event) => {
         stopTimer();
-        if (event.target.innerText === answer) {   
+        if (event.target.innerText === answer) {
           updateScore();
           event.target.className = 'option correct';
         } else {
           event.target.className = 'option wrong';
           showAnswer(answer);
         }
+        localStorage.setItem('isAnswered', true);
         option.removeEventListener('click', handleClick);
       }
       option.addEventListener('click', handleClick);
@@ -68,7 +69,7 @@ const optionsElement = () => {
     });
   };
 
-  return [options, setOptions, showAnswer];
+  return [options, handleOptions, showAnswer];
 };
 
 export default optionsElement;
