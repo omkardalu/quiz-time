@@ -3,7 +3,7 @@ import quiz from "./index.js";
 const createLandingPage = () => {
   const image = element({
     element: 'img',
-    className: 'quiz-logo',
+    className: 'quiz-logo-land-pg',
     src: './asserts/images/logo.svg',
   });
 

@@ -41,7 +41,7 @@ const createResultPage = () => {
   });
 
   button.onclick = () => {
-    location.href = '/index.html'
+    location.href = './index.html'
   };
 
   const page = element({

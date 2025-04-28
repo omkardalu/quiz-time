@@ -10,7 +10,7 @@ const timerElement = () => {
     resetTimer(startTime);
     return new Promise((resolve) => {
       let [minutes, seconds] = startTime.split(':').map(Number);
-      
+
       intervalId = setInterval(() => {
         const timerEl = getTimerElement();
         const background = document.querySelector('.quiz-container');
@@ -34,8 +34,8 @@ const timerElement = () => {
         } else if (seconds >= 25 && minutes === 0) {
           background.className = 'quiz-container green-background';
         }
-
-        timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(Number.parseInt(seconds)).padStart(2, '0')}`;
       }, 1000);
     });
   };
